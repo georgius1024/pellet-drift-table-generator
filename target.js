@@ -6,7 +6,9 @@ function drawTarget(doc, x, y, zoom = 1) {
   doc.circle(x, y, zoomed[4] / 2, "DF");
   doc.setFillColor("#ffffff");
   doc.circle(x, y, zoomed[3] / 2, "DF");
-
+  const [diameter] = zoomed.slice(-1)
+  doc.line(x - diameter / 2, y, x + diameter / 2, y, "S");
+  doc.line(x, y - diameter / 2, x, y + diameter / 2, "S");
   zoomed.forEach((diameter, index) => {
     doc.circle(x, y, diameter / 2, "D");
   });

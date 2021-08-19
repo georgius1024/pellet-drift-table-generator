@@ -1,7 +1,6 @@
 const { jsPDF } = require("jspdf");
 const { drawTarget } = require("./target");
 const { drawArrow } = require("./arrow");
-const { dragTable } = require("./drag");
 const doc = new jsPDF({ orientation: "l", unit: "mm" });
 
 const font = "fonts/JetBrainsMono-Regular.ttf";
@@ -116,18 +115,6 @@ function drawTable(x, y, pairs) {
           baseOffsetY + baseSize / 2,
           scale
         );
-        pair.forEach((hour, index) => {
-          const dragRow = dragTable[row];
-          const cell = dragRow[hour - 1];
-          const center = {
-            x: baseOffsetX + baseSize / 2 + index * baseSize - cell.x * scale,
-            y: baseOffsetY + baseSize / 2 + cell.y * scale,
-          };
-          doc.setFillColor("#333333");
-          doc.circle(center.x, center.y, 4.5 * scale, "DF");
-          doc.setFillColor("#ffffff");
-          doc.circle(center.x, center.y, 0.5 * scale, "DF");
-        });
       }
     });
   }
@@ -144,4 +131,4 @@ function drawTable(x, y, pairs) {
 drawTable(20, 20, basePairs);
 doc.addPage()
 drawTable(20, 20, alternativePairs);
-doc.save("table3.pdf");
+doc.save("table-empty.pdf");
