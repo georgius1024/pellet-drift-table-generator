@@ -144,4 +144,4 @@ function drawTable(x, y, pairs) {
 drawTable(20, 20, basePairs);
 doc.addPage()
 drawTable(20, 20, alternativePairs);
-doc.save("table3.pdf");
+doc.save("table-alt.pdf");
